@@ -13,7 +13,7 @@ function addTodo(todo){
 }
 
 function deleteTodo(position){
-	todos.slice(position, 1);
+	todos.splice(position, 1);
 	displayTodos;
 }
 
