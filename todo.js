@@ -1,21 +1,23 @@
 // JavaScript watch and code 'ToDo'
 
-var todo = undefined;
+var todos = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
 
-function initTodo(){
-    var todo = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
-}
 
-function displayTodo(){
-    console.log(todo);
+function displayTodos(){
+	console.log('My Todos: ', todos);
 }
 
 function addTodo(todo){
-    todo.push(todo);
-    displayTodo;
+	todos.push(todo);
+	displayTodos;
 }
 
 function deleteTodo(position){
-    todo.slice(position, 1);
-    displayTodo;
+	todos.slice(position, 1);
+	displayTodos;
+}
+
+function changeTodo(position, newValue){
+	todos[position] = newValue;
+	displayTodos;
 }
