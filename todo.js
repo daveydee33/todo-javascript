@@ -4,7 +4,21 @@ var todoList = {
     todos: [],
 
     displayTodos: function() {
-        console.log("My Todos: ", this.todos);  // can I use a + here instead of , ?
+        console.log("My Todos count: ", this.todos.length);
+        if (this.todos.length === 0){
+            console.log("My Todos list is empty.");
+        } else {
+            //console.log("My Todos: ", this.todos);  // can I use a + here instead of , ?.  does comma add a space?
+            for (var i = 0; i < this.todos.length; i++) {
+                var status = undefined;
+                if (this.todos[i].completed === true){
+                    status = 'x';
+                } else {
+                    status = ' ';
+                }
+                console.log("Todo #" + i + " (" + status + ") " + this.todos[i].todoText);
+            }
+        }
     },
 
     addTodo: function(todoText) {
@@ -35,33 +49,3 @@ var todoList = {
     }
 };
 
-
-
-
-
-
-
-
-/* v2 : array and functions
-var todos = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten'];
-
-
-function displayTodos(){
-	console.log('My Todos: ', todos);
-}
-
-function addTodo(todo){
-	todos.push(todo);
-	displayTodos;
-}
-
-function deleteTodo(position){
-	todos.splice(position, 1);
-	displayTodos;
-}
-
-function changeTodo(position, newValue){
-	todos[position] = newValue;
-	displayTodos;
-}
-*/
