@@ -56,8 +56,7 @@ var todoList = {
         for (var i = 0; i < this.todos.length; i++) {
             if (this.todos[i].completed === false) {
                 numCompleted++;
-                this.toggleCompleted(i); // i wonder if it's a better idea to call this method, or set it to false explictly?
-                //this.todos[i].completed = true;
+                this.toggleCompleted(i);
                 console.log(i + " was not completed.  setting to complete");
             }
         }
@@ -65,10 +64,21 @@ var todoList = {
             console.log("all were completed, setting all to not-completed");
             for (var i = 0; i < this.todos.length; i++) {
                 this.toggleCompleted(i);
-                //this.todos[i].completed = false;
             }
         }
         this.displayTodos();
     }
 };
+
+
+var displayTodosButton = document.getElementById('displayTodos');
+displayTodosButton.addEventListener('click', function(){
+  //window.alert('clicked');
+  todoList.displayTodos();
+});
+
+var toggleAllButton = document.getElementById('toggleAll');
+toggleAllButton.addEventListener('click', function(){
+  todoList.toggleAll();
+})
 
