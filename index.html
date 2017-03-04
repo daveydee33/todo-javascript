@@ -9,8 +9,31 @@
   <body>
     <h1>Hello Plunker!</h1>
 
-    <button onclick="handlers.displayTodos()">Display Todos</button>
-    <button onclick="handlers.toggleAll()">Toggle All</button>
+    <div>
+      <button onclick="handlers.displayTodos()">Display Todos</button>
+      <button onclick="handlers.toggleAll()">Toggle All</button>
+    </div>
+
+    <div>
+      <input id="addTodoTextInput" type="text" autofocus />
+      <button onclick="handlers.addTodo()">Add Todo</button>
+    </div>
+    
+    <div>
+      <input id="changeTodoPositionInput" type="number" />
+      <input id="changeTodoTextInput" type="text" />
+      <button onclick="handlers.changeTodo()">Change Todo</button>
+    </div>
+
+    <div>
+      <input id="deleteTodoPositionInput" type="number" />
+      <button onclick="handlers.deleteTodo()">Delete Todo</button>
+    </div>
+    
+    <div>
+      <input id="toggleCompletedPosition" type="number" />
+      <button onclick="handlers.toggleCompleted()">Toggle Completed</button>
+    </div>
 
     <script src="todo.js"></script>
   </body>
