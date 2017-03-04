@@ -71,14 +71,19 @@ var todoList = {
 };
 
 
-var displayTodosButton = document.getElementById('displayTodos');
-displayTodosButton.addEventListener('click', function(){
-  //window.alert('clicked');
-  todoList.displayTodos();
-});
-
-var toggleAllButton = document.getElementById('toggleAll');
-toggleAllButton.addEventListener('click', function(){
-  todoList.toggleAll();
-})
-
+// create handlers object with the methods that the page buttons can call.
+// this is an alternative way that will replace the 'addEventListener' way of 
+// adding functions to HTML button by page element IDs (getElementById).
+// This case has less code, more connected, and easier to read in HTML
+// that the buttons will do something when clicked, rather than the code being
+// somewhere else that get's added on with JavaScript.
+// Other times the 'addEventListener' is bettwer if we're doing more than just
+// adding a click method.
+var handlers = {
+  displayTodos: function() {
+    todoList.displayTodos();
+  },
+  toggleAll: function() {
+    todoList.toggleAll();
+  }
+};
