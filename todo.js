@@ -3,6 +3,8 @@
 var todoList = {
     todos: [],
 
+    // This is being replaced by view.displayTodos to display in HTML instead of console.
+    /*
     displayTodos: function() {
         console.log("My Todos count: ", this.todos.length);
         if (this.todos.length === 0){
@@ -20,24 +22,25 @@ var todoList = {
             }
         }
     },
+    */
 
     addTodo: function(todoText) {
         this.todos.push({
             todoText: todoText,
             completed: false,
         });
-        this.displayTodos();
+        view.displayTodos();
     },
 
     deleteTodo: function(position) {
         this.todos.splice(position, 1);
-        this.displayTodos();
+        view.displayTodos();
     },
 
     changeTodo: function(position, todoText) {
         //this.todos[position] = todo;    // v3. 
         this.todos[position].todoText = todoText;
-        this.displayTodos();
+        view.displayTodos();
     },
 
     toggleCompleted: function(position) {
@@ -45,7 +48,7 @@ var todoList = {
         todo.completed = !todo.completed
         // isn't this the same???  why did he write it in 2 lines, more complicated, if I could write it in one?  https://watchandcode.com/courses/60264/lectures/946811
         //this.todos[position].completed = !this.todos[position].completed;
-        this.displayTodos();
+        view.displayTodos();
     },
 
     // if at least 1 is not complete, set that and anything else to complete.
@@ -66,7 +69,7 @@ var todoList = {
                 this.toggleCompleted(i);
             }
         }
-        this.displayTodos();
+        view.displayTodos();
     }
 };
 
@@ -83,16 +86,14 @@ var handlers = {
   displayTodos: function() {
     todoList.displayTodos();
   },
+  toggleAll: function() {
+    todoList.toggleAll();
+  },
   addTodo: function(){
     addTodoTextInput = document.getElementById('addTodoTextInput');
     todoList.addTodo(addTodoTextInput.value);
     addTodoTextInput.value = '';
     addTodoTextInput.focus();
-  },
-  deleteTodo: function() {
-    deleteTodoPosition = document.getElementById('deleteTodoPositionInput');
-    todoList.deleteTodo(deleteTodoPosition.valueAsNumber);
-    deleteTodoPosition.value = '';
   },
   changeTodo: function() {
     changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
@@ -101,11 +102,38 @@ var handlers = {
     changeTodoPositionInput.value = '';
     changeTodoTextInput.value = '';
   },
+  deleteTodo: function() {
+    deleteTodoPosition = document.getElementById('deleteTodoPositionInput');
+    todoList.deleteTodo(deleteTodoPosition.valueAsNumber);
+    deleteTodoPosition.value = '';
+  },
   toggleCompleted: function() {
     toggleCompletedPosition = document.getElementById('toggleCompletedPosition');
     todoList.toggleCompleted(toggleCompletedPosition.valueAsNumber);
-  },
-  toggleAll: function() {
-    todoList.toggleAll();
-  },
+  }
+};
+
+var view = {
+  displayTodos: function() {
+    
+    var ulNode = document.querySelector('ul');
+    ulNode.innerHTML = ''; // clear the list first.
+    
+    for (var i = 0; i < todoList.todos.length; i++){
+      var liNode = document.createElement('li');
+      var todo = todoList.todos[i];
+      if (todoList.todos[i].completed === true) {
+        liNode.textContent = i + ": (x) " + todo.todoText;
+      } else {
+        liNode.textContent = i + ": ( ) " + todo.todoText;
+      }
+      // this worked too...
+      /* 
+      var textNode = document.createTextNode(i + ": " + todoList.todos[i].todoText);
+      liNode.appendChild(textNode);
+      */
+      ulNode.appendChild(liNode);      
+    }
+
+  }
 };
