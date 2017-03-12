@@ -90,32 +90,31 @@ var handlers = {
     todoList.toggleAll();
   },
   addTodo: function(){
-    addTodoTextInput = document.getElementById('addTodoTextInput');
+    var addTodoTextInput = document.getElementById('addTodoTextInput');
     todoList.addTodo(addTodoTextInput.value);
     addTodoTextInput.value = '';
     addTodoTextInput.focus();
   },
   changeTodo: function() {
-    changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
-    changeTodoTextInput = document.getElementById('changeTodoTextInput');
+    var changeTodoPositionInput = document.getElementById('changeTodoPositionInput');
+    var changeTodoTextInput = document.getElementById('changeTodoTextInput');
     todoList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value);  // note: valueAsNumber
     changeTodoPositionInput.value = '';
     changeTodoTextInput.value = '';
   },
   deleteTodo: function() {
-    deleteTodoPosition = document.getElementById('deleteTodoPositionInput');
+    var deleteTodoPosition = document.getElementById('deleteTodoPositionInput');
     todoList.deleteTodo(deleteTodoPosition.valueAsNumber);
     deleteTodoPosition.value = '';
   },
   toggleCompleted: function() {
-    toggleCompletedPosition = document.getElementById('toggleCompletedPosition');
+    var toggleCompletedPosition = document.getElementById('toggleCompletedPosition');
     todoList.toggleCompleted(toggleCompletedPosition.valueAsNumber);
   }
 };
 
 var view = {
   displayTodos: function() {
-    
     var ulNode = document.querySelector('ul');
     ulNode.innerHTML = ''; // clear the list first.
     
@@ -132,8 +131,19 @@ var view = {
       var textNode = document.createTextNode(i + ": " + todoList.todos[i].todoText);
       liNode.appendChild(textNode);
       */
+      debugger;
+      liNode.id = i;  // give an id like this.  <li id="0">first todo item</li>
+      liNode.appendChild(this.createDeleteButton());  // ? view.createDeleteButton() ?
       ulNode.appendChild(liNode);      
     }
-
+  },
+  createDeleteButton: function() {
+    var deleteButton = document.createElement('button');
+    deleteButton.textContent = "Delete";
+    deleteButton.addClass = "deleteButton";
+    return deleteButton;
   }
 };
+
+var todosUl = document.getElementById('todosUl');
+todosUl.get
