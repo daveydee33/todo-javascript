@@ -102,10 +102,10 @@ var handlers = {
     changeTodoPositionInput.value = '';
     changeTodoTextInput.value = '';
   },
-  deleteTodo: function() {
-    var deleteTodoPosition = document.getElementById('deleteTodoPositionInput');
-    todoList.deleteTodo(deleteTodoPosition.valueAsNumber);
-    deleteTodoPosition.value = '';
+  deleteTodo: function(position) {
+    //var deleteTodoPosition = document.getElementById('deleteTodoPositionInput');
+    todoList.deleteTodo(position);
+    //deleteTodoPosition.value = '';
   },
   toggleCompleted: function() {
     var toggleCompletedPosition = document.getElementById('toggleCompletedPosition');
@@ -146,8 +146,11 @@ var view = {
 
 var todosUl = document.getElementById('todosUl');
 todosUl.addEventListener("click", function(event) {
-    console.log(event);
-    var id = event.target.parentNode.id;
-    console.log(id);
-    // TODO:  need to fix delete code.
+    //console.log(event); // debugging
+    var elementClicked = event.target;
+    if (elementClicked.className === 'deleteButton') {
+        var id = elementClicked.parentNode.id;
+        console.log(id); //debugging
+        handlers.deleteTodo(parseInt(id));;  // passing the button's parent (list item) id as an integer (instead of string).
+    }
 });
