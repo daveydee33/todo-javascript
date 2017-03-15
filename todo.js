@@ -141,16 +141,19 @@ var view = {
     deleteButton.textContent = "Delete";
     deleteButton.className = "deleteButton";
     return deleteButton;
+  },
+  setupEventListeners: function() {
+    var todosUl = document.getElementById('todosUl');
+    todosUl.addEventListener("click", function(event) {
+        //console.log(event); // debugging
+        var elementClicked = event.target;
+        if (elementClicked.className === 'deleteButton') {
+            var id = elementClicked.parentNode.id;
+            console.log(id); //debugging
+            handlers.deleteTodo(parseInt(id));;  // passing the button's parent (list item) id as an integer (instead of string).
+        }
+    });
   }
 };
 
-var todosUl = document.getElementById('todosUl');
-todosUl.addEventListener("click", function(event) {
-    //console.log(event); // debugging
-    var elementClicked = event.target;
-    if (elementClicked.className === 'deleteButton') {
-        var id = elementClicked.parentNode.id;
-        console.log(id); //debugging
-        handlers.deleteTodo(parseInt(id));;  // passing the button's parent (list item) id as an integer (instead of string).
-    }
-});
+view.setupEventListeners();
