@@ -131,7 +131,6 @@ var view = {
       var textNode = document.createTextNode(i + ": " + todoList.todos[i].todoText);
       liNode.appendChild(textNode);
       */
-      debugger;
       liNode.id = i;  // give an id like this.  <li id="0">first todo item</li>
       liNode.appendChild(this.createDeleteButton());  // ? view.createDeleteButton() ?
       ulNode.appendChild(liNode);      
@@ -140,10 +139,15 @@ var view = {
   createDeleteButton: function() {
     var deleteButton = document.createElement('button');
     deleteButton.textContent = "Delete";
-    deleteButton.addClass = "deleteButton";
+    deleteButton.className = "deleteButton";
     return deleteButton;
   }
 };
 
 var todosUl = document.getElementById('todosUl');
-todosUl.get
+todosUl.addEventListener("click", function(event) {
+    console.log(event);
+    var id = event.target.parentNode.id;
+    console.log(id);
+    // TODO:  need to fix delete code.
+});
