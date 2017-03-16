@@ -55,6 +55,9 @@ var todoList = {
     // if all are complete already, set them all to not-complete
     // if all are not-complete, set them to complete
     toggleAll: function() {
+
+        // my version - worked fine.
+        /*
         var numCompleted = 0;
         for (var i = 0; i < this.todos.length; i++) {
             if (this.todos[i].completed === false) {
@@ -69,6 +72,38 @@ var todoList = {
                 this.toggleCompleted(i);
             }
         }
+        view.displayTodos();
+        */
+
+        var totalTodos = this.todos.length;
+        var completedTodos = 0;
+
+        // Version 11 - "Destroy all for loops".  Using forEach instead.  # callback functions / higher order functions
+
+        // Get number of completed todos.
+        // for (var i = 0; i < totalTodos; i++) {
+        //     if (this.todos[i].completed === true) {
+        //         completedTodos++;
+        //     }
+        // }
+        this.todos.forEach(function(todo) {
+            if (todo.completed === true) {
+                completedTodos++;
+            }
+        });
+
+        // Case 1: If everything's true, make everything false.
+        if (completedTodos === totalTodos) {
+            this.todos.forEach(function(todo) {
+                todo.completed = false;
+            });
+        // Case 2: Otherwise, make everything true.
+        } else {
+            this.todos.forEach(function(todo) {
+                todo.completed = true;
+            });
+        }
+        
         view.displayTodos();
     }
 };
